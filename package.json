@@ -1,0 +1,13 @@
+{
+  "name": "benchmark-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "./benchmark.sh"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^4.4.4"
+  }
+}
