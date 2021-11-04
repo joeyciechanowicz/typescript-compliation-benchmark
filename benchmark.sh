@@ -9,14 +9,15 @@ node create-templates.js 1
 echo "Generated typescript files"
 
 # safety checks
-./node_modules/.bin/tsc dist/noTypesReducer.ts || exit 1
+# ./node_modules/.bin/tsc dist/noTypesReducer.ts || exit 1
 ./node_modules/.bin/tsc dist/partialState.ts || exit 1
 ./node_modules/.bin/tsc dist/partialTypedState.ts || exit 1
 ./node_modules/.bin/tsc dist/pickInterfaceState.ts || exit 1
 
 echo "Typescript files are valid"
 
-for FIELDS in 1 2 3 4 5 6 7 8 9 10
+# for FIELDS in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
+for FIELDS in 21 22 23 24 25 26 27 28 29 20 21 22 23 24 25 26 27 28 29 30
 do
     echo "Generating templates for $FIELDS fields"
     node create-templates.js $FIELDS
@@ -25,5 +26,8 @@ do
     './node_modules/.bin/tsc dist/partialState.ts' \
     './node_modules/.bin/tsc dist/partialTypedState.ts' \
     './node_modules/.bin/tsc dist/pickInterfaceState.ts' \
-    --export-json "run-$FIELDS-fields.json"
+    './node_modules/.bin/tsc dist/seperateInterfaces.ts' \
+    --export-json "runs/run-$FIELDS-fields.json"
 done
+
+node process-runs.js > output.csv

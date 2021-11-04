@@ -2,7 +2,7 @@ const fs = require('fs');
 
 const numFields = parseInt(process.argv[2]) || 1;
 
-const items = [...Array(1000)].map((_, i) => i);
+const items = [...Array(100)].map((_, i) => i);
 const fields = [...Array(numFields)].map((_, i) => i);
 
 const consts = items.map(i => `export const THING_${i} = 'THING_${i}';`).join('\n');
@@ -97,8 +97,30 @@ const updateThing${i} = (action: Action): Pick<State, ${pick(i)}> => (${assignme
 ${typedReducer}
 `;
 
+const seperateInterfaces = `
+import * as type from './const';
+
+interface Action {
+   type: string;
+   value: number;
+}
+
+${state}
+
+${iter(i => `
+interface UpdateThing${i} {
+    ${fields.map(f => `
+    thing${i}_${f}: number;`).join('')}
+}
+const updateThing${i} = (action: Action): UpdateThing${i} => (${assignment(i)});
+`)}
+
+${typedReducer}
+`;
+
 fs.writeFileSync('dist/const.ts', consts);
 fs.writeFileSync('dist/noTypesReducer.ts', noTypesReducer);
 fs.writeFileSync('dist/partialState.ts', partialState);
 fs.writeFileSync('dist/partialTypedState.ts', partialTypedState);
 fs.writeFileSync('dist/pickInterfaceState.ts', pickInterfaceState);
+fs.writeFileSync('dist/seperateInterfaces.ts', seperateInterfaces);
