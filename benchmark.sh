@@ -17,7 +17,7 @@ echo "Generated typescript files"
 echo "Typescript files are valid"
 
 # for FIELDS in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
-for FIELDS in 21 22 23 24 25 26 27 28 29 20 21 22 23 24 25 26 27 28 29 30
+for FIELDS in 1 2 3 4 5 6 8 10 12 14 16 19 22 25 28 22 26 30 31
 do
     echo "Generating templates for $FIELDS fields"
     node create-templates.js $FIELDS
