@@ -2,7 +2,7 @@ const fs = require('fs');
 
 const numFields = parseInt(process.argv[2]) || 1;
 
-const items = [...Array(100)].map((_, i) => i);
+const items = [...Array(5)].map((_, i) => i);
 const fields = [...Array(numFields)].map((_, i) => i);
 
 const consts = items.map(i => `export const THING_${i} = 'THING_${i}';`).join('\n');
