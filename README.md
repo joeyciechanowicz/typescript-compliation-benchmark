@@ -8,8 +8,12 @@ The `benchmark.sh` script will compare the compilation performance of three typi
   We declare a `type PartialState = Partial<State>` and use that rather than multiple declarations of `Partial`.
 - Pick
   On each sub-reducer we type the return as `Pick<State, 'fields' | 'we' | 'assign'>`.
+- Seperate Interface
+  Each sub-reducer has an interface declared for it's return type.
 
 Below we compare the performance when different numbers of fields are used.
+
+![100 state](100-property-state.svg)
 
 ## Single field for each sub-reducer
 
